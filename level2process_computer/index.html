@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>Process Computer팀 업무 및 관련 기술 소개 | VNTG 기술블로그</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="" />
+    
+    <meta name="description" content="안녕하세요, VNTG AI센터 Process Computer팀에 입사한 김태표입니다. 제가 속한 Level 2 Process Computer팀과, 관련 기술 세 가지에 대해 소개하려 합니다.  목차 Level 2 Process Computer Level 2 시스템의 대표적인 기능, Tracking   Level 2 와 관련 있는 기술 세 가지 에 대한 소개">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Process Computer팀 업무 및 관련 기술 소개">
+<meta property="og:url" content="https://vntgcorp.github.io/level2process_computer/index.html">
+<meta property="og:site_name" content="VNTG 기술블로그">
+<meta property="og:description" content="안녕하세요, VNTG AI센터 Process Computer팀에 입사한 김태표입니다. 제가 속한 Level 2 Process Computer팀과, 관련 기술 세 가지에 대해 소개하려 합니다.  목차 Level 2 Process Computer Level 2 시스템의 대표적인 기능, Tracking   Level 2 와 관련 있는 기술 세 가지 에 대한 소개">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://vntgcorp.github.io/image/l2pc.jpg">
+<meta property="article:published_time" content="2022-01-10T06:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-10T04:30:22.874Z">
+<meta property="article:author" content="VNTG">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vntgcorp.github.io/image/l2pc.jpg">
+    
+
+    
+        <link rel="alternate" href="http://blog.vntgcorp.com/" title="VNTG 기술블로그" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/../image/favntg.png" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4TM9D66BJC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4TM9D66BJC');
+</script>
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle"><span style="color:black"><strong>Tech Blog</strong></span></p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/ClickUp/">ClickUp</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Data/">Data</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Data/Grafana/">Grafana</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Data/Level2/">Level2</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/DevOps/">DevOps</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/DevOps/CICD/">CICD</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/DevOps/Terraform/">Terraform</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FastAPI/">FastAPI</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Static-Site-Generator/">Static Site Generator</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Static-Site-Generator/Gatsby/">Gatsby</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Static-Site-Generator/Hexo/">Hexo</a></li></ul></li></ul>
+                                
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Data/">Data</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Data/Level2/">Level2</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-level2process_computer" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Process Computer팀 업무 및 관련 기술 소개
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/level2process_computer/" class="article-date">
+       <time datetime="2022-01-10T06:00:00.000Z" itemprop="datePublished">2022-01-10</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/level2process_computer/" class="article-date">
+     <time datetime="2022-01-10T04:30:22.874Z" itemprop="dateModified">2022-01-10</time>
+  </a>
+</div>
+
+
+                
+
+                
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <p>안녕하세요, VNTG AI센터 Process Computer팀에 입사한 김태표입니다.</p>
+<p>제가 속한 Level 2 Process Computer팀과, 관련 기술 세 가지에 대해 소개하려 합니다.</p>
+<hr>
+<h3 id="목차"><a href="#목차" class="headerlink" title="목차"></a>목차</h3><ul>
+<li><a href="#Level-2-Process-Computer">Level 2 Process Computer</a><ul>
+<li><a href="#Level-2-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%98-%EB%8C%80%ED%91%9C%EC%A0%81%EC%9D%B8-%EA%B8%B0%EB%8A%A5-Tracking">Level 2 시스템의 대표적인 기능, Tracking</a></li>
+</ul>
+</li>
+<li><a href="#Level-2-%EC%99%80-%EA%B4%80%EB%A0%A8-%EC%9E%88%EB%8A%94-%EA%B8%B0%EC%88%A0-%EC%84%B8-%EA%B0%80%EC%A7%80-%EC%97%90-%EB%8C%80%ED%95%9C-%EC%86%8C%EA%B0%9C">Level 2 와 관련 있는 기술 세 가지 에 대한 소개</a><ul>
+<li><a href="#1-OPC-OLE-for-Process-Control-OPC">1. OPC (OLE for Process Control : OPC)</a><ul>
+<li><a href="#OPC-%EC%B0%B8%EA%B3%A0-%EC%82%AC%ED%95%AD">OPC 참고 사항</a></li>
+<li><a href="#OPC-Server">OPC Server</a></li>
+</ul>
+</li>
+<li><a href="#2-IPC-Shared-Memoey-%EA%B3%B5%EC%9C%A0-%EB%A9%94%EB%AA%A8%EB%A6%AC">2. IPC Shared Memoey (공유 메모리)</a></li>
+<li><a href="#3-Message-Queue-%EB%A9%94%EC%8B%9C%EC%A7%80-%ED%81%90">3. Message Queue (메시지 큐)</a><ul>
+<li><a href="#Message-Queue-%EC%B0%B8%EA%B3%A0-%EC%82%AC%ED%95%AD">Message Queue 참고 사항</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="참고링크"><a href="#참고링크" class="headerlink" title="참고링크"></a>참고링크</h3><blockquote>
+<ul>
+<li>  <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=IJT7IktqReU">🎬VNTG Level2팀 업무설명</a></li>
+<li>  <a target="_blank" rel="noopener" href="https://red-nose-cousin.tistory.com/2?category=874877">OPCUA 통신 쉽게 알기 - 1편 OPC 란 무엇인가</a></li>
+<li>  <a target="_blank" rel="noopener" href="https://doitnow-man.tistory.com/110">[프로세스간 통신] IPC(inter process communication) 종류</a></li>
+<li>  <a target="_blank" rel="noopener" href="https://www.rabbitmq.com/">Messaging that just works — RabbitMQ</a></li>
+<li>  <a target="_blank" rel="noopener" href="https://12bme.tistory.com/176">[오픈소스] 메시지큐(Message Queue) 알아보기</a></li>
+<li>  <a target="_blank" rel="noopener" href="https://nathanh.tistory.com/137">Message Queue란?</a></li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="Level-2-Process-Computer"><a href="#Level-2-Process-Computer" class="headerlink" title="Level 2 Process Computer"></a>Level 2 Process Computer</h2><p><strong>Process Computer 팀</strong>에서는 <strong>Level 2</strong> 시스템 운영 및 개발을 담당하고 있으며 또한 현장 설비에서 발생하는 많은 센서 데이터 및 각종 측정 데이터를 수집하여 디지털 플랫폼인 Dataforge와 연계하는 업무를 처리하고 있습니다.</p>
+<blockquote>
+<p>Level 1 과 Level 2 시스템의 사전적 의미는 다음과 같습니다.<br>&nbsp;<br><strong>Level 1 PLC(Programmable Logic Controller : PLC)</strong> 는 디지털 또는 아날로그 입출력 모듈을 통하여 로직, 시퀀싱, 타이밍, 카운팅 연산과 같은 특수한 기능을 수행하기 위하여 프로그램 가능한 메모리를 사용하고 여러 종류의 기계나 프로세서를 제어하는 디지털 동작의 전자 장치입니다.<br>&nbsp;<br><strong>Level 2 Process Computer</strong>는 단어 그대로 두 번째 있는 시스템으로 설비를 실시간으로 제어하거나 정보를 처리할 목적으로 설계된 컴퓨터입니다.<br>제어의 대상이 실시간으로 변화하기 때문에 실시간 처리가 요구되며 24시간 연속 가동을 전제로 하는 시스템입니다.<br>그리고 이러한 기계 설비의 제어나 감시, 실시간 수집 된 정보를 통해 제품을 추적하여 관리 하기 때문에 성능과 기능 및 신뢰성에 대한 요구가 엄격합니다.</p>
+</blockquote>
+<center><img src="../image/l2pc_01.png" width="800"></center>
+
+<p>간단하게 Level 1의 역할과, Level 2의 역할을 예시와 그림을 통해 이야기하도록 하겠습니다.</p>
+<p>예를 들어 버튼 신호를 전달 받아 A에서 B로 제품을 옮겨주는 설비가 있습니다.</p>
+<p>Level 1 PLC는 단순히 버튼 신호를 통해 동작하던 설비를 논리적인 순서로 작업할 수 있도록 제어하는 역할을 합니다.<br>Level 2 에서는 센서 데이터와 PLC 데이터 등을 수집합니다.<br>그리고 데이터 가공을 통해 제품 이동 정보, 각 구간 작업 시간, 생산 실적, 전력 사용량 등과 같은 실적 데이터를 생성하고 이렇게 생성된 실적들을 MES로 보내는 역할을 합니다.</p>
+<p>만약 Level 2가 없다면 설비 자체는 구동 시킬 수는 있지만 Level 2 에서 수집한 데이터들을 통해 제품 실시간 추적, 상태 정보, 설비 자동 설정, 제품 트랜드 기능 등을 사용 할 수 없게 되고 원활한 생산 작업 진행이 불가능 합니다.<br>이러한 Level 2의 기본적인 기능은 생산과 작업 결과에 대한 전산화에 필수적이며 앞으로 시스템을 더욱 고도화 하여 사람이 작업에 개입하지 않는 스마트 팩토리 구축에 활용되며 원가 절감 및, 생산 효율성 향상에 기여할 수 있습니다.</p>
+<center><img src="../image/l2pc_11.png" width="800"></center>
+
+<hr>
+<h2 id="Level-2-시스템의-대표적인-기능-Tracking"><a href="#Level-2-시스템의-대표적인-기능-Tracking" class="headerlink" title="Level 2 시스템의 대표적인 기능 Tracking"></a>Level 2 시스템의 대표적인 기능 Tracking</h2><p>제품 추적 기능 <strong>Tracking</strong>은 level 2에서는 제품이 생산되는 순서 (작업 지시)를 상위 MES에서 전송 받아 설비의 센서 신호에 맞게 논리적으로 추적하게 됩니다.<br>이 Tracking 정보를 바탕으로 생산하는 제품 별 <strong>설비의 값을 설정</strong>하거나 제품의 생산 주기를 기록하여 어떤 제품이 언제, 어디서, 어떻게 생산 된 것 인지에 대한 <strong>생산 정보</strong>를 확인 할 수 있습니다.<br>그리고 각 공정 별 수집한 PLC 데이터를 활용하여 제품 생산에 대한 <strong>경향</strong>을 분석할 수 있습니다.</p>
+<p>아래 예시 그림에서 Level 2는 각 공정의 센서와 데이터 수집 기기를 통해 설비와 제품의 상태 등의 정보를 수집하게 됩니다.<br>이렇게 수집한 데이터를 활용하여 <strong>제품 추적, 설비 자동 설정, 제품 정보, 경향</strong> 등에 활용하게 됩니다.</p>
+<center><img src="../image/l2pc_02.png" width="800"></center>
+
+<hr>
+<h2 id="Level-2-와-관련-있는-기술-세-가지-에-대한-소개"><a href="#Level-2-와-관련-있는-기술-세-가지-에-대한-소개" class="headerlink" title="Level 2 와 관련 있는 기술 세 가지 에 대한 소개"></a>Level 2 와 관련 있는 기술 세 가지 에 대한 소개</h2><h3 id="1-OPC-OLE-for-Process-Control-OPC"><a href="#1-OPC-OLE-for-Process-Control-OPC" class="headerlink" title="1. OPC (OLE for Process Control : OPC)"></a>1. OPC (OLE for Process Control : OPC)</h3><p>OPC Foundation 에서 관리하는 <strong>표준화 된 통신 프로토콜</strong>입니다.</p>
+<blockquote>
+<p>OLE (Object Linking &amp; Embedding) : Windows의 각종 응용프로그램 사이에서 서로 데이터를 공유할 수 있는 기능을 의미합니다.</p>
+</blockquote>
+<p>OPC는 기존 약어를 따르는 OPC DA (Classic OPC) 가 발전하여 OPC UA (Open Platform Communications unified Architecture : OPC UA) 로 변경되었습니다.</p>
+<p>Level 2 에서는 현장 설비 각각의 PLC와 통신을 구성하여 현장에서 발생하는 많은 센서 데이터 및 각종 측정 데이터를 수집합니다.<br>하지만 PLC 제조사 마다 다른 통신 프로토콜을 제공하고 있기 때문에 여러 통신 프로토콜을 구성하고 관리하기 어려운 문제들이 발생합니다.</p>
+<p>그래서 이러한 문제점을 해결하기 위해 Level 2 에서는 OPC 기술을 사용하는데 OPC는 표준화 된 통신 프로토콜을 제공함으로써 제조사 별로 나누어진 통신 프로토콜을 <strong>한 가지 통신으로 구성</strong>하여 사용자에게 효율적인 통신 서비스를 제공하게 됩니다.</p>
+<p>아래 예시 그림에서 OPC 서버는 각각 다른 PLC 프로토콜과 통신하고 OPC 서버와 OPC 클라이언트에게 PLC 데이터를 상위 시스템에서 사용할 수 있도록 합니다.</p>
+<center><img src="../image/l2pc_03.png" width="800"></center>
+
+<hr>
+<h4 id="OPC-참고-사항"><a href="#OPC-참고-사항" class="headerlink" title="OPC 참고 사항"></a>OPC 참고 사항</h4><p><strong>OPC Classic 에서 제공하는 서비스</strong></p>
+<ul>
+<li><p>  <strong>DA (Data Access : DA)</strong> : PLC의 현재 값을 확인하고 받아올 수 있습니다.<br>→ 과거의 데이터는 받지 못합니다. 이 부분이 HDA와 비교된다고 볼 수 있습니다.</p>
+</li>
+<li><p>  <strong>HDA (Historical Data Access : HDA)</strong> : 과거의 데이터를 가져올 수 있습니다.<br>→ OPC HDA 서버에서 현재 데이터를 Local Historian 에 저장하고 클라이언트 에서 Access 합니다.</p>
+</li>
+<li><p>  <strong>AE (Alarm &amp; Events : AE)</strong> : 알람 &amp; 이벤트입니다.<br>→ TAG를 등록하면 해당 알람이 True로 바뀌었을 때 이벤트로 클라이언트에게 알려주는 기능입니다.\</p>
+</li>
+</ul>
+<p><strong>Classic OPC (OPC DA) 와 OPC UA 차이</strong></p>
+<p>OPC Classic 의 경우 아래 그림 1. 과 같이 서버가 분리되어 있고 그림 2. 와 같이 Windows의 기술인 <strong>COM과 DCOM</strong>으로 통신을 하기 때문에 Windows 환경에서만 사용이 가능합니다.</p>
+<blockquote>
+<p>DCOM : Distributed Component object Model, DCOM 으로 네트워크 컴퓨터 사이에서 컴포넌트 간 통신을 위한 Microsoft기술입니다.</p>
+</blockquote>
+<center><img src="../image/l2pc_04.png" width="800"></center>
+
+<p>하지만 OPC UA는 기존 OPC Classic의 DA/HDA/AE에 Security를 보완해서 <strong>크로스 플랫폼</strong>으로 제공합니다. 즉, Windows 환경을 벗어날 수 있습니다.</p>
+<blockquote>
+<p>크로스 플랫폼 : 멀티 플랫폼 이라고도 하며 운영체제, 프로그래밍 언어, 컴퓨터 소프트웨어 등이 여러 종류의 컴퓨터 플랫폼에서 동작할 수 있다는 것을 뜻하는 용어입니다.</p>
+</blockquote>
+<center><img src="../image/l2pc_05.png" width="800"></center>
+
+<hr>
+<h4 id="OPC-Server"><a href="#OPC-Server" class="headerlink" title="OPC Server"></a>OPC Server</h4><p>OPC 표준을 지원하는 산업용 자동화 및 IoT를 위한 연결 플랫폼으로 제조업에서 일반적 널리 사용되는 약 150개 이상의 드라이버를 제공하는 소프트웨어입니다.</p>
+<blockquote>
+<p>kepware OPC Server, Takebishi OPC Server, LS OPC Server 등이 있습니다.</p>
+</blockquote>
+<p>OPC Server는 산업 제어 시스템 고유의 통신 요구 사항에 맞추었으며 장비를 자동으로 연결하고 장비의 데이터를 읽고 쓸 수 있습니다.<br>또한 해당 데이터를 HMI, SCADA, MES, Historion 또는 ERP 시스템에 완벽하게 통합할 수 있고 높은 신뢰성과 사용자 편의성으로 신속하게 설치하여 완벽하게 작동할 수 있도록 합니다.</p>
+<p>우리 Level 2에서는 Kepware OPC Server를 통해 PLC 데이터 및 센서 데이터를 활용하고 있습니다.</p>
+<hr>
+<h3 id="2-IPC-Shared-Memoey-공유-메모리"><a href="#2-IPC-Shared-Memoey-공유-메모리" class="headerlink" title="2. IPC Shared Memoey (공유 메모리)"></a>2. IPC Shared Memoey (공유 메모리)</h3><p>IPC (Inter Process Communication) 는 프로세스 간 통신이라고 말하며 프로세스 (프로그램) 사이에서 서로 데이터를 주고 받는 방법이라고 생각하시면 됩니다.</p>
+<blockquote>
+<p>IPC의 종류 : PIPE, Message Queue, Shared Memory, Memory Map, Socket</p>
+</blockquote>
+<p>아래 그림과 같이 공유 메모리는 프로세스 간 공유가 되도록 설정한 메모리이며 모든 프로세스가 접근이 가능합니다.<br>그리고 이렇게 메모리 자체를 공유함으로써 처리 속도도 빠르다는 장점도 있어 유용하게 사용합니다.</p>
+<p>하지만 공유 메모리는 메모리 영역에 대한 동시적인 접근을 제어하기 위한 방법이 필요하여 별도의 동기화 기술이 필요합니다.</p>
+<center><img src="../image/l2pc_06.png" width="800"></center>
+
+<p>Level 2 에서는 현장 설비 곳곳에서 실시간으로 변화하는 많은 센서 데이터와 각종 측정 데이터를 수집하여 공유메모리에 적재하여 사용함으로써 수집하면서 발생하는 데이터 읽기, 쓰기, 복사와 같은 오버헤드 발생을 줄이고 하나의 메모리를 공유함으로써 빠른 처리속도를 제공받기위해 공유메모리를 사용하고 있습니다.</p>
+<center><img src="../image/l2pc_07.png" width="800"></center>
+
+<hr>
+<h3 id="3-Message-Queue-메시지-큐"><a href="#3-Message-Queue-메시지-큐" class="headerlink" title="3. Message Queue (메시지 큐)"></a>3. Message Queue (메시지 큐)</h3><p><strong>MOM</strong>을 구현한 시스템을 <strong>메시지 큐 ( Message Queue : MQ)</strong> 라 합니다. 메시지 큐는 별도의 공정 작업을 연기할 수 있는 유연성을 제공하여 <strong>SOA</strong>의 개발에 도움을 줄 수 있습니다.</p>
+<blockquote>
+<p>MOM : 메시지 지향 미들웨어 (Message Oriented Middleware : MOM)는 비동기 메시지를 사용하는 다른 응용 프로그램 사이에서 데이터 송수신을 의미합니다.<br>&nbsp;<br>SOA : 서비스 지향 아키텍처 Service-Oriendted Architecture : SOA 는 네트워크에서 공통의 통신 언어를 사용하는 서비스 인터페이스를 활용하여 소프트웨어 구성 요소를 다시 사용할 수 있게 만드는 소프트웨어 설계 유형입니다.</p>
+</blockquote>
+<p>그리고 MQ는 <strong>비동기, 비동조, 탄력성, 과잉, 보증, 확장성</strong>이라는 장점을 가지고 있습니다.</p>
+<ul>
+<li>  <strong>비동기 (Asynchronous)</strong> : Queue에 넣기 때문에 나중에 처리 가능하고 다른 API에게 위임함으로써 Request에 대해 빠르게 응답 가능합니다.</li>
+<li>  <strong>비동조 (Decoupling)</strong> : MQ를 따로 둠으로써, 애플리케이션과 분리 가능합니다. (결합도를 낮춰 유연성 제공)</li>
+<li>  <strong>탄력성 (Resilience)</strong> : MQ는 데이터를 Queue에 담아 비동기로 처리하기 때문에, 일부가 실패 시 전체에 영향을 받지 않음.</li>
+<li>  <strong>과잉 (Redundancy)</strong> : 실패할 경우 재실행 가능합니다.</li>
+<li>  <strong>보증 (Guarantees)</strong> : 처리된 작업을 확인 가능합니다.</li>
+<li>  <strong>확장성 (Scalable)</strong> : 다수의 프로세스들이 큐에 메시지 전송이 가능합니다.</li>
+</ul>
+<p>Level 2 에서는 아래 예시 그림과 같이 수집한 데이터들을 통해 이벤트 발생기를 구성하였다고 가정하였을때 Message Queue가 없는 경우 프로세스 간 의존성 (결합도)가 높고 기존 동기화 방식은 많은 데이터가 전송될 경우 병목이 생기거나 뒤에 들어오는 요청이 딜레이 되는 등 시스템에 영향을 끼치는 경우가 발생할 수 있습니다.</p>
+<p>하지만 Message Queue 를 활용한다면 비동기 처리를 함으로써 프로세스 간 유연성을 높이고 Queue는 별도로 데이터를 보관하고 있기 때문에 프로세스 종료 등과 같은 서비스 장애에 대해 데이터 손실에 대한 부담 또한 줄일 수 있습니다.</p>
+<p>이러한 Message Queue의 장점을 Level 2에서 활용하고 있습니다.</p>
+<center><img src="../image/l2pc_08.png" width="800"></center>
+<br>
+
+<h4 id="Message-Queue-참고-사항"><a href="#Message-Queue-참고-사항" class="headerlink" title="Message Queue 참고 사항"></a>Message Queue 참고 사항</h4><p><strong>Rabbit MQ</strong></p>
+<p>MQ의 대표적인 오픈소스이고 <strong>AMQP</strong>를 따르는 메시지 브로커 소프트웨어 (MOM) 제품 중 하나 입니다.</p>
+<blockquote>
+<p>AMQP : Advanced Message Queuing Protocol : AMQP 는 조직 또는 애플리케이션 간의 비즈니스 메시지 통신을 위한 완벽한 지능적 상호 운용성을 제공하는 오픈 소스 표준입니다.</p>
+</blockquote>
+<p>※ AMQP를 구성하는 요소는 <strong>Exchange, Queue, Binding</strong>이 있습니다.</p>
+<ul>
+<li>  <strong>Exchange</strong> : 생산자로부터 수신한 메시지를 적절한 큐나 다른 Exchange로 분배하는 라우터의 기능을 합니다. 그리고 Exchange는 데가지 타입으로 바인딩 가능합니다. (Direct, Topic, Headers, Fanout)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>타입</strong></th>
+<th><strong>설명</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Direct</td>
+<td>Routing key 가 정확히 일치하는 Queue 에 메시지 전송</td>
+</tr>
+<tr>
+<td>Topic</td>
+<td>Routing Key 패턴이 일치하는 Queue에 전송</td>
+</tr>
+<tr>
+<td>Headers</td>
+<td>[Key : Value]로 이루어진 hearder 값을 기준으로 일치하는 Queue에 메시지 전송</td>
+</tr>
+<tr>
+<td>Fanout</td>
+<td>해당 Exchange에 등록된 모든 Queue에 메시지 전송</td>
+</tr>
+</tbody></table>
+<ul>
+<li>  <strong>Queue</strong> : 메시지를 저장하고 소비자에게 저장한 메시지를 전달하는 역할을 합니다.</li>
+<li>  <strong>Binding</strong> : Exchange와 Queue 와의 관계를 정의한 일종의 라우터 테이블 입니다. (특정 조건에 맞는 메시지를 특정 큐에 전송하도록 설정합니다.)</li>
+</ul>
+<hr>
+<p><strong>Rabbit MQ</strong> 는 메시지를 생산하는 생산자(Producer)가 메시지를 큐에 저장해 두면 Publish/subscribe 방식의 메시지 전달 브로커입니다.</p>
+<center><img src="../image/l2pc_09.png" width="800"></center>
+
+<p>그리고 Rabbit MQ는 대표적인 오픈 소스로써 상업적 지원이 가능하고 AMQP형식을 통해 상호 운용성을 제공 받아 언어, 운영체제 등 형식이 다르더라도 메시지 통신이 가능합니다. 또한 아래 그림과 같이 UI를 통한 시각적인 관리가 가능합니다.</p>
+<center><img src="../image/l2pc_10.png" width="800"></center>
+<br>
+
+<hr>
+<p>이상으로 4차 산업혁명의 꽃인 스마트 팩토리 (Smart Factory)를 실현하는 Level 2 Process Computer 업무소개와 관련된 기술인 OPC, 공유메모리, 메시지큐에 대한 소개를 마치겠습니다.</p>
+<p>감사합니다!</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://vntgcorp.github.io/level2process_computer/" data-id="cky80b06w00008wuwcea26sc3" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "VNTG"
+        },
+        "headline": "Process Computer팀 업무 및 관련 기술 소개",
+        "image": "https://VntgCorp.github.io../../../image/l2pc.jpg",
+        "keywords": "",
+        "genre": "Data Level2",
+        "datePublished": "2022-01-10",
+        "dateCreated": "2022-01-10",
+        "dateModified": "2022-01-10",
+        "url": "https://VntgCorp.github.io/level2process_computer/",
+        "description": "안녕하세요, VNTG AI센터 Process Computer팀에 입사한 김태표입니다.
+제가 속한 Level 2 Process Computer팀과, 관련 기술 세 가지에 대해 소개하려 합니다.
+
+목차
+Level 2 Process Computer
+Level 2 시스템의 대표적인 기능, Tracking
+
+
+Level 2 와 관련 있는 기술 세 가지 에 대한 소개",
+        "wordCount": 1540
+    }
+</script>
+
+</article>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>Contact:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="envelope" href="mailto:techblog@vntgcorp.com" target="_blank" rel="noopener">
+                        <i class="icon fa fa-envelope"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/VntgCorp" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="home" href="https://www.vntgcorp.com/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-home"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="http://blog.vntgcorp.com/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/grafana_df_op/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Grafana를 활용한 데이터 가시화</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/level2process_computer/" class="thumbnail">
+    
+    
+        <span style="background-image:url(../../../image/l2pc.jpg)" alt="Process Computer팀 업무 및 관련 기술 소개" class="thumbnail-image"></span>
+    
+    
+</a>
+
+
+
+  
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Data/">Data</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Data/Level2/">Level2</a></p>
+                            <p class="item-title"><a href="/level2process_computer/" class="title">Process Computer팀 업무 및 관련 기술 소개</a></p>
+                            <p class="item-date"><time datetime="2022-01-10T06:00:00.000Z" itemprop="datePublished">2022-01-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/grafana_df_op/" class="thumbnail">
+    
+    
+        <span style="background-image:url(../../../image/grafana_df_op_00.png)" alt="Grafana를 활용한 데이터 가시화" class="thumbnail-image"></span>
+    
+    
+</a>
+
+
+
+  
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Data/">Data</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Data/Grafana/">Grafana</a></p>
+                            <p class="item-title"><a href="/grafana_df_op/" class="title">Grafana를 활용한 데이터 가시화</a></p>
+                            <p class="item-date"><time datetime="2021-11-30T06:00:00.000Z" itemprop="datePublished">2021-11-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/devops_md_op/" class="thumbnail">
+    
+    
+        <span style="background-image:url(../../../image/devops_md_op_00.png)" alt="Terraform Cloud 기반으로 인프라 구축 협업하기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+
+
+  
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/DevOps/">DevOps</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/DevOps/Terraform/">Terraform</a></p>
+                            <p class="item-title"><a href="/devops_md_op/" class="title">Terraform Cloud 기반으로 인프라 구축 협업하기</a></p>
+                            <p class="item-date"><time datetime="2021-11-29T06:00:00.000Z" itemprop="datePublished">2021-11-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/DockerWithoutDesktop/" class="thumbnail">
+    
+    
+        <span style="background-image:url(../../image/dockermoney.png)" alt="Docker Desktop 없이 Windows에서 Docker 사용하기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+
+
+  
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Docker/">Docker</a></p>
+                            <p class="item-title"><a href="/DockerWithoutDesktop/" class="title">Docker Desktop 없이 Windows에서 Docker 사용하기</a></p>
+                            <p class="item-date"><time datetime="2021-09-07T07:00:00.000Z" itemprop="datePublished">2021-09-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/fastapi/" class="thumbnail">
+    
+    
+        <span style="background-image:url(../../image/logo-teal.png)" alt="FastAPI, WebSocket, 그리고 Docker" class="thumbnail-image"></span>
+    
+    
+</a>
+
+
+
+  
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FastAPI/">FastAPI</a></p>
+                            <p class="item-title"><a href="/fastapi/" class="title">FastAPI, WebSocket, 그리고 Docker</a></p>
+                            <p class="item-date"><time datetime="2021-06-30T07:05:46.000Z" itemprop="datePublished">2021-06-30</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ClickUp/">ClickUp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data/">Data</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data/Grafana/">Grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data/Level2/">Level2</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DevOps/">DevOps</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/DevOps/CICD/">CICD</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DevOps/Terraform/">Terraform</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FastAPI/">FastAPI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Static-Site-Generator/">Static Site Generator</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Static-Site-Generator/Gatsby/">Gatsby</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Static-Site-Generator/Hexo/">Hexo</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class=""></a>
+                </h1>
+                <p>&copy; VNTG. Powered by GitHub Pages.</p>                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://vntgcorp.github.io/level2process_computer/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>
