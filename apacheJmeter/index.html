@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>SW 성능 테스트 툴 Apache JMeter™ 활용 | VNTG 기술블로그</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="" />
+    
+    <meta name="description" content="1. Apache JMeter 란 무엇인가 2. Apache JMeter 기본 개념 3. Apache JMeter 사용법 후기  안녕하세요, VNTG Dataforge팀의 Data Engineer 전준현입니다😀 소프트웨어 개발 초창기에는 소프트웨어 개발에 필요한 기술을 습득하고 요구사항을 분석하고 이를 설계하고 구현하는 과정으로도 바쁠 뿐만 아니라 개발">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SW 성능 테스트 툴 Apache JMeter™ 활용">
+<meta property="og:url" content="https://vntgcorp.github.io/apacheJmeter/index.html">
+<meta property="og:site_name" content="VNTG 기술블로그">
+<meta property="og:description" content="1. Apache JMeter 란 무엇인가 2. Apache JMeter 기본 개념 3. Apache JMeter 사용법 후기  안녕하세요, VNTG Dataforge팀의 Data Engineer 전준현입니다😀 소프트웨어 개발 초창기에는 소프트웨어 개발에 필요한 기술을 습득하고 요구사항을 분석하고 이를 설계하고 구현하는 과정으로도 바쁠 뿐만 아니라 개발">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://vntgcorp.github.io/image/jmeter_logo.svg">
+<meta property="article:published_time" content="2022-03-04T06:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-04T07:54:51.373Z">
+<meta property="article:author" content="VNTG">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vntgcorp.github.io/image/jmeter_logo.svg">
+    
+
+    
+        <link rel="alternate" href="http://blog.vntgcorp.com/" title="VNTG 기술블로그" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/../image/favntg.png" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4TM9D66BJC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4TM9D66BJC');
+</script>
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle"><span style="color:black"><strong>Tech Blog</strong></span></p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/ClickUp/">ClickUp</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Data/">Data</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Data/Grafana/">Grafana</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Data/Level2/">Level2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Data/Metabase/">Metabase</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/DevOps/">DevOps</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/DevOps/CICD/">CICD</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/DevOps/Terraform/">Terraform</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Docker/">Docker</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FastAPI/">FastAPI</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Git/">Git</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Static-Site-Generator/">Static Site Generator</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Static-Site-Generator/Gatsby/">Gatsby</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Static-Site-Generator/Hexo/">Hexo</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Test/">Test</a></li></ul>
+                                
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Test/">Test</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-apacheJmeter" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        SW 성능 테스트 툴 Apache JMeter™ 활용
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/apacheJmeter/" class="article-date">
+       <time datetime="2022-03-04T06:00:00.000Z" itemprop="datePublished">2022-03-04</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/apacheJmeter/" class="article-date">
+     <time datetime="2022-03-04T07:54:51.373Z" itemprop="dateModified">2022-03-04</time>
+  </a>
+</div>
+
+
+                
+
+                
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <ul>
+<li><a href="#1-Apache-JMeter-%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80">1. Apache JMeter 란 무엇인가</a></li>
+<li><a href="#2-Apache-JMeter-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%85%90">2. Apache JMeter 기본 개념</a></li>
+<li><a href="#3-Apache-JMeter-%EC%82%AC%EC%9A%A9%EB%B2%95">3. Apache JMeter 사용법</a></li>
+<li><a href="#%ED%9B%84%EA%B8%B0">후기</a></li>
+</ul>
+<p>안녕하세요, VNTG Dataforge팀의 Data Engineer 전준현입니다😀</p>
+<p>소프트웨어 개발 초창기에는 소프트웨어 개발에 필요한 기술을 습득하고 요구사항을 분석하고 이를 설계하고 구현하는 과정으로도 바쁠 뿐만 아니라 개발 환경이 스프링, 스프링 부트와 같은 개발 프레임워크 기반으로 많은 부분이 공통화되어 있어 개발자가 직접적으로 통제할 수 있는 영역이 매우 제한적입니다. 그래서 개발자가 성능을 고려하여 서비스를 개발하기가 쉽지 않습니다.</p>
+<p>이러한 제한적인 상황 속에서도 소프트웨어나 서비스에 있어 성능 부분은 매우 중요한 부분입니다. 해당 서비스가 좋음에도 불구하고 성능이 원활하지 않다면 서비스 개통에 문제가 생길뿐만 아니라 실제 성능까지 문제가 발생할 수 있기 때문에 개통한 서비스를 다시 취소하는 예도 있습니다.</p>
+<p>이처럼 서비스에 대한 요구사항 분석, 설계, 구현 등 서비스 개발만큼이나 성능 테스트도 중요합니다.</p>
+<p>그렇다면 만약 자신이 개발한 애플리케이션의 인기가 증가해 사용자가 급증한다고 가정하였을 때,</p>
+<blockquote>
+<p><strong>과연, 내가 개발한 서비스는 얼마나 견딜 수 있을까?</strong></p>
+</blockquote>
+<p>라는 생각이 들면서 해당 서비스에 대한 <strong>데이터 전송, 처리 속도, 메모리 이용률, 최대 동시 사용자 수</strong> 등을 고려할 수 밖에 없는 상황이 생깁니다.</p>
+<p>이러한 상황을 예방하기 위해 서비스 배포 이전, 성능 또는 부하 테스트를 통하여 소프트웨어 애플리케이션의 성능 병목 현상을 식별하고 이 원인을 제거함으로써 서비스를 이용하는 모든 사용자의 만족도를 향상 시키기 위해 테스트를 수행해야 합니다. 이번 포스팅의 주제는 크게 성능 테스트 툴에서도 웹서버 테스트에 특화되어 있는 툴인 Apache JMeter에 대하여 작성해보도록 하겠습니다.</p>
+<p>그럼 성능 테스트 툴인 Apache JMeter가 무엇이고, 왜 우리 VNTG Dataforge팀이 수많은 성능 테스트 툴 중 JMeter를 검토하였는지, 테스트는 어떠한 방식으로 진행하였는지를 설명드리겠습니다.</p>
+<center><img src="../image/jmeter01.svg" width="400"></center>
+
+<h2 id="1-Apache-JMeter-란-무엇인가"><a href="#1-Apache-JMeter-란-무엇인가" class="headerlink" title="1. Apache JMeter 란 무엇인가"></a>1. Apache JMeter 란 무엇인가</h2><h3 id="1-1-Apache-JMeter의-정의"><a href="#1-1-Apache-JMeter의-정의" class="headerlink" title="1-1. Apache JMeter의 정의"></a>1-1. Apache JMeter의 정의</h3><center>
+<img src="../image/jmeter02.png" width="800">
+
+<p>▲ 출처 : <a target="_blank" rel="noopener" href="https://jmeter.apache.org/">Apache JMeter 공식 홈페이지</a></p>
+</center>
+
+<p>Apache JMeter는 100% 순수 Java 응용프로그램은 테스트 기능 동작을 로드하고 성능을 측정하도록 설계된 오픈소스 소프트웨어로 다른 테스트 도구들 보다 좀 더 웹 서버 테스트에 특화되어 있습니다.</p>
+<p>그래서 정적 및 동적 자원, 웹 동적 애플리케이션 모두에서 테스트하거나 Server, Network 등을 시뮬레이션하여 강도 테스트 및 다양한 부하 유형에 전체 성능을 분석하는 데 활용하고 있습니다.</p>
+<h3 id="1-2-Apache-JMeter-작동-원리"><a href="#1-2-Apache-JMeter-작동-원리" class="headerlink" title="1-2. Apache JMeter 작동 원리"></a>1-2. Apache JMeter 작동 원리</h3><center>
+<img src="../image/jmeter03.png" width="800">
+▲ JMeter의 작동 원리
+</center>
+
+<p>그렇다면 JMeter의 작동 원리에 대해 궁금하실텐데, 상단의 그림은 JMeter의 작동 원리에 대해 나타난 것입니다. JMeter는 대상 서버에 요청을 보내는 사용자 그룹을 시뮬레이션하고 테이블, 그래프 등을 통하여 대상 서버의 성능을 설명하는 대상 서버의 통계 정보를 반환한다고 보면 됩니다.</p>
+<p>간단히 말씀드리면 Apache JMeter는 <em>Browser</em>가 아니며 <em><strong>Protocol 수준에서 작동</strong></em>합니다. 테스트 진행 시, Web Service와 Remote service에 대해 브라우저처럼 보이지만, 실제 Browser에서 지원하는 모든 작업을 수행하지 않습니다.</p>
+<p>즉, Protocol 수준에서 작동된다는 것은 통신규약에 맞게 클라이언트와 서버 간 메시지만 송수신할 뿐 클라이언트 자체에서 진행되는 연산 동작은 하지 않습니다. 만약 해당 브라우저에서 테스트를 진행하시고 싶다면 해당 브라우저의 로직을 파악하고 자바를 이용하여 별도로 JMeter 내부 모듈을 구현하여 진행해야 합니다. 그렇지 않는 이상 Protocol 수준으로 테스트를 진행한다고 생각하시면 됩니다.</p>
+<p><strong>Apache JMeter는 JavaScript를 수행하지 않으며, HTML 페이지를 Rendering하지 않습니다.</strong></p>
+<p>따라서, 로컬에서 실행한 Apache JMeter에서 바로 대상 애플리케이션 성능을 테스트하며 보통 소규모 테스트 또는 테스트 플랜을 검증하는 목적으로 주로 사용됩니다.</p>
+<p>Apache JMeter을 간단히 말씀드리면 ‘<strong>해당 웹 서버에 임의로 설정한 요청을 많이 보내 서버가 얼마나 버틸 수 있는지 테스트하는 도구’</strong> 라고 보시면 될 것 같습니다!</p>
+<h3 id="1-3-Apache-JMeter-검토-및-활용-이유"><a href="#1-3-Apache-JMeter-검토-및-활용-이유" class="headerlink" title="1-3. Apache JMeter 검토 및 활용 이유"></a>1-3. Apache JMeter 검토 및 활용 이유</h3><p>그렇다면 이번 테스트 진행에 앞서, ReadyAPI, ACCELQ, TestPlant eggPlant Performance, Load Runner, NeoLoad 등 다양한 API 성능 테스트 툴이 있지만, 왜 우리 VNTG Dataforge팀에서 <em><strong>Apache JMeter를 선택했는지</strong></em>를 말씀드리겠습니다.</p>
+<p>선택한 첫 번째 이유는 <strong>이번 테스트 목적에 맞는 기능만을 갖추었다는 것</strong>입니다.</p>
+<p>이번 포스팅에 앞서 이번에 진행한 테스트는 Web에 대한 CPU 및 Memory 사용률, 평균 응답 속도, 최대 동시 접속자 수 등 성능을 체크하는 것이 주목적이었기 때문에 이에 부합하는 테스트 툴을 검토하였습니다. 검토하는 과정에서 ReadyAPI, ACCELQ, Eggplant, Load Runner, NeoLoad 등 다양한 툴이 있다는 것을 알게 되었고, 해당 툴마다 서로 다른 특징이 있다는 것을 파악하였습니다.</p>
+<p>하단 &lt;표1&gt;은 검토 과정에서 제가 조사한 성능 테스트 툴들의 종류와 특징 일부입니다.</p>
+<center>
+
+<p><strong>&lt;표1. 성능테스트 툴 종류 및 특징&gt;</strong></p>
+</center>
+
+<table>
+<thead>
+<tr>
+<th><strong>종류</strong></th>
+<th><strong>특징</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>ACCELQ</strong></td>
+<td>웹 및 API 테스트를 가장 쉽고 지속 가능한 방법으로 자동 측정 수행</td>
+</tr>
+<tr>
+<td><strong>TestPlant eggPlant Performance</strong></td>
+<td>AI를 기반으로 테스트 실행에서 결과 분석까지 모든 테스트 과정을 자동 수행</td>
+</tr>
+<tr>
+<td><strong>LoadRunner</strong></td>
+<td>대량의 유저가 테스트 대상 시스템에 부하를 줄 경우, 시스템의 장애를 체크하기 위하여 광범위한 On-Line 서버 모니터링 제공, UNIX/Windows 시스템의 자원 사용량 등 다양한 기능을 제공</td>
+</tr>
+<tr>
+<td><strong>NeoLoad</strong></td>
+<td>모든 웹과 모바일 애플리케이션의 병목 현상을 측정할 수 있는 부하 테스트 툴</td>
+</tr>
+<tr>
+<td><strong>Apache JMeter</strong></td>
+<td>모든 웹, API에 대한 기능과 Performance를 측정할 수 있는 성능 테스트 툴</td>
+</tr>
+</tbody></table>
+<div align="right">
+( ▲ 출처 : 각 툴 홈페이지 소개 )
+</div>
+
+
+<p>그 중 대표적으로 웹의 성능과 관련하여 가장 많이 활용한다는 Neoload, LoadRunner, JMeter 3 종류의 성능 테스트 툴 기능을 살펴보았습니다.</p>
+<p>하단 &lt;표2&gt;를 보시면 3가지 종류의 툴을 비교한 표입니다.</p>
+<center>
+
+<p><strong>&lt;표2. Neoload, LoadRunner, JMeter 툴 비교&gt;</strong></p>
+</center>
+
+<table>
+<thead>
+<tr>
+<th><strong>특색</strong></th>
+<th><strong>Neoload</strong></th>
+<th><strong>LoadRunner</strong></th>
+<th><strong>Jmeter</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>웹용 EUX 메트릭신청</strong></td>
+<td>4 가지 측정 항목에 대한 렌더링 이벤트 측정 가능</td>
+<td>Trueclient 프로토콜-단일메트릭만 제공</td>
+<td>브라우저 렌더링 이벤트 관련 측정 항목을 측정 가능</td>
+</tr>
+<tr>
+<td><strong>최신 버전</strong></td>
+<td>6.2</td>
+<td>12.53</td>
+<td>3.3</td>
+</tr>
+<tr>
+<td><strong>스크립팅 언어</strong></td>
+<td>자바 스크립트 / 자바</td>
+<td>C / Java / Java 스크립트</td>
+<td>Groovy / Java</td>
+</tr>
+<tr>
+<td><strong>스크립트 유지 관리</strong></td>
+<td>재설계 및 스크립트 재작업을 40 ~ 50 % 줄여줌</td>
+<td>사용 불가</td>
+<td>사용 불가</td>
+</tr>
+<tr>
+<td><strong>상관 관계</strong></td>
+<td>자동</td>
+<td>자동</td>
+<td>자동 없음(수동 상관)</td>
+</tr>
+<tr>
+<td><strong>지속적인 통합</strong></td>
+<td>Jenkin-사용자 정의 그래프 포함<br>허드슨, 뱀부, 팀 시티</td>
+<td>젠킨<br>사용자 정의 그래프 없음</td>
+<td>Jenkin, Bamboo 및 Hudson</td>
+</tr>
+<tr>
+<td><strong>IOT 성능 테스팅</strong></td>
+<td>MQTT, JSMS 등 사전 조치</td>
+<td>Visual Studio에서 IoT 지원</td>
+<td>IoT 성능 테스트에 사용 가능한 MQTT plugin</td>
+</tr>
+<tr>
+<td><strong>보고</strong></td>
+<td>좋은 보고서 및 Test 결과 비교</td>
+<td>우수 보고서, Test 결과 비교, 사용 가능한 상세 분석</td>
+<td>원시적 결과 분석<br>테이블과 차트</td>
+</tr>
+<tr>
+<td><strong>모바일 지원</strong></td>
+<td>NeoLoad에 내장 (더 이상 구매할 필요 없음)</td>
+<td>HTTP 프로토콜 포함 X</td>
+<td>대역폭 에뮬레이션 X</td>
+</tr>
+<tr>
+<td><strong>클라우드 테스트 솔루션</strong></td>
+<td>NeoLoad에 내장</td>
+<td>통합된 클라우드 모듈 X</td>
+<td>통합된 클라우드 모듈 X</td>
+</tr>
+<tr>
+<td><strong>모니터링</strong></td>
+<td>하위 네트워크에 여러 모니터링 엔진을 배치 기능</td>
+<td>별도의 도구 필요</td>
+<td>내장된 모니터링 X</td>
+</tr>
+</tbody></table>
+<div align="right">
+
+<p>( ▲ 출처 : <a target="_blank" rel="noopener" href="https://ko.myservername.com/what-is-augmented-reality-technology">Neoload 성능테스트/myservername</a> )</p>
+</div>
+
+<p>&lt;표1&gt;과 &lt;표2&gt;에 나타난 것처럼 성능 테스트 툴에 대해 정리하고 검토하는 과정에서 우리 Dataforge팀의 System Engineer분의 도움으로 손쉽고 빠르게 진행 가능한 점, 기존 서비스 진행 도중 테스트였기 때문에 위험을 피하면서도 웹 서버의 성능 테스트가 가능한 점. 이 2가지 이점을 통하여 Apache JMeter 활용을 결정하였습니다.</p>
+<p>두 번째 이유는 JMeter를 활용하며 <strong>비용 절감의 효과</strong>를 얻었기 때문입니다.</p>
+<p>상단에 보신 것처럼 각 성능 툴은 다양한 기능과 자동화를 제공하는 대신에 그만큼의 비용을 필요로 합니다. 이에 사용하시고자 하는 툴에 따라 발생하는 비용이 다를 수 있다고 판단하여 이를 쉽게 비교하실 수 있게 각 툴의 홈페이지를 참조하여 하단 &lt;표3&gt;으로 정리하였습니다.</p>
+<p><strong>&lt;표3. 각 성능 테스트 툴의 종류와 가격&gt;</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>종류</strong></th>
+<th><strong>가격</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>ReadyAPI</strong></td>
+<td>연간 $6,769 / license</td>
+</tr>
+<tr>
+<td><strong>ACCELQ</strong></td>
+<td>$390 /user/month</td>
+</tr>
+<tr>
+<td><strong>TestPlant eggPlant Performance</strong></td>
+<td>연간 $ 98 / license</td>
+</tr>
+<tr>
+<td><strong>Load Runner</strong></td>
+<td>Pro (연간 $ 2,399)<br>Premium (연간 $ 7,399)<br>Enterprise (견적받기)</td>
+</tr>
+<tr>
+<td><strong>NeoLoad</strong></td>
+<td>Enterprise(견적받기)</td>
+</tr>
+<tr>
+<td><strong>Apache JMeter</strong></td>
+<td>For free</td>
+</tr>
+</tbody></table>
+<div align="right">
+( ▲ 출처 : 각 툴의 홈페이지 )
+</div>
+
+<p>&lt;표3&gt;을 기준으로 Apache JMeter를 제외하면 대부분 사용하기 위한 별도의 비용이 필요하였습니다. 그래서 최대한 비용을 절감할 수 있는 Apache JMeter를 활용하여 비용적인 측면을 낮추어보고자 했습니다.</p>
+<p>이처럼 이번 테스트 진행에 앞서 기능적인 면과 비용적인 측면으로 나누어 실제 검토를 하며 내용을 정리하였을 때, 비용적인 측면을 제외한다면 상용 툴의 사용을 검토하는 것이 맞았습니다. 하지만, 비용적인 측면을 고려하여 이번 테스트의 주 목적에 딱 맞는 기능을 갖추고 있으면서 무료로 활용 가능할 수 있는 Apache JMeter를 선택하게 되었습니다.</p>
+<p>물론, 성능 테스트는 새로 구축하는 소프트웨어가 목표로 하는 부하 상황에서 원할하게 작동하는지, 신규 도입하는 하드웨어가 개발된 소프트웨어을 기반으로 최대 어느 정도까지 서비스가 가능한지를 확인하는 목적을 가지고 있기 때문에 <strong>테스트 환경과 목적에 맞는 툴을 선정하시는 것이 가장 효율적입니다.</strong></p>
+<p>그렇다면 Apache JMeter은 어떠한 구조를 가지고 있는 것이며, 테스트 플랜은 어떻게 작성하는 것인지에 대한 기본 개념이 필요하실 수 있는 분들이 계실 수 있기 때문에 간단히 그림과 함께 설명드리겠습니다!</p>
+<hr>
+<h2 id="2-Apache-JMeter-기본-개념"><a href="#2-Apache-JMeter-기본-개념" class="headerlink" title="2. Apache JMeter 기본 개념"></a>2. Apache JMeter 기본 개념</h2><h3 id="2-1-Test-Plan-수립"><a href="#2-1-Test-Plan-수립" class="headerlink" title="2-1. Test Plan 수립"></a>2-1. Test Plan 수립</h3><p>Test Plan 수립에 대한 설명 이전, JMeter의 구조를 보시면 하단의 그림과 같습니다.</p>
+<center>
+<img src="../image/jmeter04.png" width="600">
+
+<p>▲ 출처 : <a target="_blank" rel="noopener" href="https://multicore-it.com/67">시스템 테스트 - JMeter 활용, multicore-it.com, 2018. 11. 19. 15:28</a></p>
+</center>
+
+<p>Test Plan은 JMeter가 수행할 일련의 테스트 단계를 모아 놓은 것으로 Thread Group은 Test Plan의 시작점이 됩니다. Controllers는 Sampler와 Logical Controller로 구성되는데 Sampler는 서버로 전달되는 프로토콜을 정의하는 것입니다.</p>
+<p>이처럼 Test Plan은 JMeter가 실행될 때, 완벽한 하나의 Test Plan으로 진행하기 위해서는 하나 이상의 Thread Group, Controller, Sampler, Timer로 구성되어야 합니다.</p>
+<h3 id="2-2-Test-Plan의-요소"><a href="#2-2-Test-Plan의-요소" class="headerlink" title="2-2. Test Plan의 요소"></a>2-2. Test Plan의 요소</h3><p>Test Plan에서 최소의 Test는 Test Plan, Thread Group 및 하나 이상의 Sampler로 구성됩니다.</p>
+<h4 id="2-2-1-스레드-그룹-Thread-Group"><a href="#2-2-1-스레드-그룹-Thread-Group" class="headerlink" title="2-2-1. 스레드 그룹(Thread Group)"></a>2-2-1. 스레드 그룹(Thread Group)</h4><center>
+<img src="../image/jmeter05.png" width="600">
+▲ Thread Group 구성 요소
+</center>
+
+<p>Thread Group 요소는 모든 Test Plan의 시작으로, 모든 Controller, Sampler는 해당 Thread Group 하위에 있어야 작동합니다. Listeners와 같은 다른 요소는 Test Plan 바로 아래에 배치 가능하여 해당 위치에 있으면 하단의 모든 Thread Group에 적용됩니다.</p>
+<p>Thread Group 요소는 JMeter가 테스트를 실행하는 데 사용할 Thread 수를 제어하며, Controller 사용 시 하단의 <strong>4가지</strong> 내용을 수행할 수 있습니다.</p>
+<p><strong>1) 스레드 수 설정(Number of Threads - users)</strong></p>
+<p>&nbsp;&nbsp; Protocol, Server Name 및 IP 등 Controller에서 사용자가 지정한 곳에 <strong>접속한 유저 수</strong> 입니다.</p>
+<p><strong>2) Ramp-up 기간 설정(Ramp-Up Period - in seconds)</strong></p>
+<p>&nbsp;&nbsp; <strong>Singer Thread</strong>들(각 사용자들)간의 접속 시간을 나타냅니다.<br>&nbsp;&nbsp; <em>예를 들어</em> 10개 Thread 사용, Ramp-Up 기간 10초, Loop Count 1인 경우<br>&nbsp;&nbsp; 10개의 Thread를 모두 가동하고 실행하는 전체가 100초가 걸립니다.</p>
+<p><strong>3) 테스트 실행 횟수 설정(Loop Count - 반복 횟수)</strong></p>
+<p>&nbsp;&nbsp; 앞서 설정한 Users와 Ramp-Up에 대해 얼마나 <strong>반복</strong>할 것인지 <strong>횟수</strong>를 지정하시면 됩니다.<br>&nbsp;&nbsp; 극한까지 테스트를 진행하시고 싶으시면 Infinite를 체크하시면 됩니다.</p>
+<p><strong>4) 스케줄러 구성</strong></p>
+<p>&nbsp;&nbsp; Thread Group은 스케줄러 구성을 통하여 Thread 수명도 지정도 가능합니다.</p>
+<p>&nbsp;&nbsp; ① Thread Group 패널 하단에 있는 Specify Thread lifetime 체크박스를 체크하여 테스트 기간 및 시작 지연을 입력할 수 있는 추가 필드를 Enable 시킵니다.<br>&nbsp;&nbsp; ② 해당 Test Plan 및 Group을 몇 초 후에 시작할지 Duration(s) 및 Startup Delay(s) 를 구성하여 각 Thread의 지속 시간을 제어합니다.<br>&nbsp;&nbsp; ③ 테스트 진행 시, JMeter는 Thread Group의 Thread를 시작하기 전에 설정한 스케줄러로 실행됩니다.</p>
+<h4 id="2-2-2-컨트롤러-Controller"><a href="#2-2-2-컨트롤러-Controller" class="headerlink" title="2-2-2. 컨트롤러 (Controller)"></a>2-2-2. 컨트롤러 (Controller)</h4><center>
+<img src="../image/jmeter06.png" width="500">
+▲ Controller 항목
+</center>
+
+<p>Controller는 실시간 JMeter Test Plan 구축에 중요하며, Test Plan 수행 절차를 제어하는 역할을 수행하며, Sampler와 Logical Controller 2가지로 구성됩니다.</p>
+<p><em>예를 들어</em> 한번 로그인하고 검색하는 웹 애플리케이션을 테스트 하려면 항목 선택이 모든 반복에 대해 하나씩 이동하도록 요청합니다. 그리고 로직 컨트롤러는 테스트중인 서버에서 진행되는 요청의 흐름을 관리하여 이를 가능하게 만들어줍니다.</p>
+<h4 id="2-2-3-샘플러-Sampler"><a href="#2-2-3-샘플러-Sampler" class="headerlink" title="2-2-3. 샘플러(Sampler)"></a>2-2-3. 샘플러(Sampler)</h4><p>Sampler는 Request를 Server에 전달하기 위한 도구이며, Logical Controller는 Request를 조작할 수 있는 로직을 추가하기 위한 도구입니다.</p>
+<center>
+<img src="../image/jmeter07.png" width="600">
+▲ Sampler 하위 항목 이미지
+</center>
+
+<p>두 가지 모두 Thread Group 하위에서만 생성 가능합니다.</p>
+<center>
+<img src="../image/jmeter08.png" width="600">
+▲ JMeter Sampler 하위 항목
+</center>
+
+<p>상단의 JMeter Sampler 하위 항목을 보시면 각 Sampler에는 설정할 수 있는 다양한 Request가 있습니다. 이 중 Test Plan 및 Thread Group 하위에 하나 이상의 요소를 추가하고 사용자 지정을 별도 해주어야 테스트에서 활용 가능합니다.</p>
+<center>
+<img src="../image/jmeter09.png" width="600">
+▲ JMeter Logical Controller 하위 항목
+</center>
+
+<p>Logical Controller를 사용하면 JMeter가 Request 보낼 시기를 사용자가 직접 지정할 수 있을 뿐만 아니라 요청 순서도 변경할 수 있습니다.</p>
+<h4 id="2-2-4-Listener"><a href="#2-2-4-Listener" class="headerlink" title="2-2-4. Listener"></a>2-2-4. Listener</h4><center>
+<img src="../image/jmeter10.png" width="600">
+▲ JMeter Listener 하위 항목
+</center>
+
+<p>Listener는 Test Plan에 대한 정보 접근을 제공하는 도구이며, Sampler의 Request에 대한 결과를 수집해서 보여주는 Element입니다.<br>Listener는 Request 요청들에 대한 Response Time 추이 그래프, Summary 결과 등 실시간 Request/Response를 확인할 수 있는 다양한 플러그인을 지원하기 때문에 원하시는 테스트 결과 값을 받아볼 수 있습니다.</p>
+<p>지금까지 JMeter의 기본 개념들을 확인하였고, 다음은 Apache JMeter 설치부터 테스트 결과까지의 순서로 우리 VNTG Dataforge팀에서 테스트에 활용한 방법과 결과에 대해 알려드리겠습니다.</p>
+<hr>
+<h2 id="3-Apache-JMeter-사용법"><a href="#3-Apache-JMeter-사용법" class="headerlink" title="3. Apache JMeter 사용법"></a>3. Apache JMeter 사용법</h2><h3 id="3-1-Apache-JMeter-설치"><a href="#3-1-Apache-JMeter-설치" class="headerlink" title="3-1. Apache JMeter 설치"></a>3-1. Apache JMeter 설치</h3><blockquote>
+<p>Apache JMeter 설치 경로 : <a target="_blank" rel="noopener" href="https://jmeter.apache.org/download_jmeter.cgi">Apache JMeter - Download Apache JMeter</a></p>
+</blockquote>
+<p>상단의 설치 경로로 접속하여 Apache JMeter 5.4.3(Requires Java 8+) 하위 항목에 있는 Binaries에서 다운로드를 진행합니다. <em>( 윈도우의 경우 zip 파일을 다운로드 받습니다 )</em></p>
+<h3 id="3-2-Apache-JMeter-설치"><a href="#3-2-Apache-JMeter-설치" class="headerlink" title="3-2. Apache JMeter 설치"></a>3-2. Apache JMeter 설치</h3><p>① 압축을 풀고 해당 폴더 내 bin 폴더에서 jmeter.bat 을 클릭합니다.<br>② cmd 창이 먼저 실행된 후 Apache JMeter 창이 뜨면 실행이 된 것 입니다.</p>
+<blockquote>
+<p><em>만약 실행이 되지 않는다면,</em> <strong>JDK 미설치</strong>로 인한 것이기 때문에 <strong>JDK를 설치</strong>해주면 됩니다.</p>
+</blockquote>
+<blockquote>
+<p>Java SE 8 Archive Downloads 설치 경로 : <a target="_blank" rel="noopener" href="https://www.oracle.com/kr/java/technologies/javase/javase8-archive-downloads.html">Java Archive Downloads - Java SE 8 | Oracle 대한민국</a></p>
+</blockquote>
+<center>
+<img src="../image/jmeter11.png" width="800">
+▲ Jmeter.bat을 실행하면 나타나는 cmd 창
+</center>
+
+<blockquote>
+<p><strong>이 때, 실행된 cmd 창을 종료시키면 동시에 실행된 JMeter 또한 종료되니 주의가 필요합니다.</strong></p>
+</blockquote>
+<center>
+<img src="../image/jmeter12.png" width="800">
+▲ cmd창 실행 후 실행되는 Apache JMeter 창
+</center>
+
+<h3 id="3-3-Apache-JMeter-Test-Plan-작성-및-실행"><a href="#3-3-Apache-JMeter-Test-Plan-작성-및-실행" class="headerlink" title="3-3. Apache JMeter Test Plan 작성 및 실행"></a><strong>3-3. Apache JMeter Test Plan 작성 및 실행</strong></h3><p>Test Plan은 <strong>HTTP Request와 JDBC connection configuration</strong> 이렇게 2가지 Sampler로 테스트를 진행해보겠습니다.</p>
+<h4 id="3-3-1-HTTP-Request-Test-Web-load-Test"><a href="#3-3-1-HTTP-Request-Test-Web-load-Test" class="headerlink" title="3-3-1. HTTP Request Test(Web load Test)"></a><strong>3-3-1. HTTP Request Test(Web load Test)</strong></h4><ol>
+<li>Thread Group 생성하기</li>
+</ol>
+<p>왼쪽 상단의 Test Plan 우클릭 후, Add &gt; Threads(users) &gt; Thread Group을 선택합니다.</p>
+<center>
+<img src="../image/jmeter13.png" width="600">
+▲ Thread Group 생성 과정
+</center>
+
+<ol start="2">
+<li>Thread Properties 설정하기</li>
+</ol>
+<p>Thread Group 을 클릭하여 오른쪽에 있는 Thread Properties를 설정합니다.</p>
+<p>*해당 설정은 <em>2-2-1. 스레드 그룹(Thread Group)</em> 을 참고하시면 됩니다.</p>
+<ul>
+<li>Number of Threads(users) : 가상 사용자 ( Thread )의 수</li>
+<li>Loop Count : 테스트를 반복하는 횟수</li>
+</ul>
+<center>
+<img src="../image/jmeter14.png" width="600">
+▲ Thread Properties 설정
+</center>
+
+<ol start="3">
+<li>실질적인 측정을 위하여 HTTP Request Sampler 추가하여 진행합니다.</li>
+</ol>
+<p>Thread Group 우클릭 &gt; Add &gt; Sampler &gt; HTTP Request 선택하여 생성합니다.<br>(<em>Sampler가 있어야 테스트가 가능합니다.</em>)</p>
+<center>
+<img src="../image/jmeter15.png" width="600">
+▲ HTTP Request Sampler 추가하기
+</center>
+
+<center>
+<img src="../image/jmeter16.png" width="500">
+▲ HTTP Request Sampler 추가된 모습
+</center>
+
+<ol start="4">
+<li>HTTP Request Sampler를 설정합니다.</li>
+</ol>
+<p>HTTP Request를 클릭하여 Web Server에 대한 Protocol, IP, Port Number 등을 설정합니다.</p>
+<center>
+<img src="../image/jmeter17.png" width="600">
+▲ HTTP Request Sampler 설정하기(1)
+</center>
+
+<ul>
+<li>Name : 테스트 할 페이지 이름</li>
+<li>Method : Parameter 를 받아오는 방식  ( <em>Default : Get</em> )</li>
+<li>Path : 페이지의 주소  <em>ex ) /project/login_go</em></li>
+</ul>
+<p>하단의 <code>Add</code>버튼을 통해 파라미터를 설정해줍니다. (<em>받아올 Parameter가 없으면 생략 가능</em>)</p>
+<center>
+<img src="../image/jmeter18.png" width="600">
+▲ HTTP Request Sampler 설정하기(2)
+</center>
+
+<ol start="5">
+<li>설정한 Sampler의 결과를 확인하기 위하여 Listener를 추가해줍니다.</li>
+</ol>
+<p>해당 메뉴얼에서는 <strong>4가지 Listener를 추가</strong> 하여 결과를 볼 예정입니다.</p>
+<center>
+<img src="../image/jmeter19.png" width="500">
+▲ Listener 추가하기
+</center>
+
+<p>① 통신기록을 확인하기 위한 목적으로 View Results Tree를 추가합니다.<br>HTTP Request 우클릭 &gt; Add &gt; Listener &gt; View Results Tree를 클릭하여 생성합니다.</p>
+<center>
+<img src="../image/jmeter20.png" width="400">
+▲ View Results Tree Listener 추가
+</center>
+
+<p>② 모든 테스트 결과를 종합해서 통계 데이터를 한 눈에 보는 Summary Report를 추가합니다.<br>HTTP Request 우클릭 &gt; Add &gt; Listener &gt; Summary Report를 클릭하여 생성합니다.</p>
+<center>
+<img src="../image/jmeter21.png" width="400">
+▲ Summary Report Listener 추가
+</center>
+
+<p>③ Thread의 모든 테스트 결과를 시간별 그래프로 보여주는 Graph Results를 추가합니다.<br>HTTP Request 우클릭 &gt; Add &gt; Listener &gt; Graph Results를 클릭하여 생성합니다.</p>
+<center>
+<img src="../image/jmeter22.png" width="400">
+▲ Graph Results Listener 추가
+</center>
+
+<p>④ ‘①’에 추가한 View Results를 Table형태로 보여주는 View Results in Table를 추가합니다.<br>HTTP Request 우클릭 &gt; Add &gt; Listener &gt; View Results in Table를 클릭하여 생성합니다.</p>
+<center>
+<img src="../image/jmeter23.png" width="600">
+▲ View Results in Table Listener 추가
+</center>
+
+<ol start="6">
+<li>HTTP Request Sampler 실행하기</li>
+</ol>
+<p>HTTP Request Sampler 설정, View Result Tree, Summary Report 등 원하는 Listener까지 추가가 완료된 후 해당 Thread Group를 선택하고 JMeter 상단에 있는 Start 버튼을 눌러줍니다.<br><em>(Start 버튼을 눌러 실행시키면 비활성화됩니다)</em></p>
+<blockquote>
+<p>다중 Thread Group을 생성하셨다면 전체 Thread Group에 대한 결과 값이 나타납니다.</p>
+</blockquote>
+<center>
+<img src="../image/jmeter24.png" width="600">
+▲ Start 버튼 위치
+</center>
+
+<ol start="7">
+<li>HTTP Request 실행 결과 확인하기</li>
+</ol>
+<p>바로 하단의 그림인 HTTP Request View Results Tree를 보시면 초록색 마크가 나와있어야 정상적인 실행이며, 빨간색 마크가 나타나면 실행에 실패하였다는 의미입니다.</p>
+<blockquote>
+<p><em>Request가 실패하였다면,</em> 실패한 Request를 클릭하시면 오른쪽 Sampler result 창에 실패한 이유가 작성되어 있으므로 해당 내용을 확인하시어 수정하시면 됩니다.</p>
+</blockquote>
+<p>7-1) View Results Tree</p>
+<p>하나하나 Request 된 데이터를 확인할 수 있으며 결과를 상세히 보고 검색까지 가능합니다.<br>또한 하나의 Request를 선택하면 바로 옆의 창에서 request, response data 등 모든 데이터를 한 눈에 볼 수 있습니다.</p>
+<center>
+<img src="../image/jmeter25.png" width="600">
+▲ HTTP Request View Results Tree 실행 결과
+</center>
+
+<p>7-2) Summary Report<br>결과 레포트를 보고 싶을 때 사용되는 Listener입니다.<br>하단의 사진을 클릭하시면 Header 부분에 여러가지 내용이 나와 있는데<br>모든 지표는 <strong>Sample time</strong>을 기준으로 만든다고 보시면 됩니다.</p>
+<blockquote>
+<p><strong>Sample Time</strong> 이란<br>Load Time, Response time, Elapsed time을 기준으로 보는데 쉽게 이야기해서 Sample이 서버에 요청하고 응답받아 데이터를 보여주는 시간을 의미합니다.</p>
+</blockquote>
+<p>Summary Report는 QA 또는 테스터 입장에서 아주 중요한 지표로 많이 사용되고 있습니다.</p>
+<center>
+<img src="../image/jmeter26.png" width="600">
+▲ Summary Report 실행 결과
+</center>
+
+<p>7-3) Graph Results</p>
+<p>Summary Report에서 나오는 데이터를 그래프화하여 시각적으로 보여주며<br>보통 Summary Report와 함께 확인합니다.</p>
+<center>
+<img src="../image/jmeter27.png" width="600">
+▲ Graph Results 실행결과
+</center>
+
+<p>7-4) View Results in Table</p>
+<p>View Results Tree에서 Tree 형식을 Table형식을 변경되어 사용된 것으로<br>한 눈에 데이터들을 볼 수 있도록 직관적인 데이터를 제공하고 있습니다.</p>
+<center>
+<img src="../image/jmeter28.png" width="600">
+▲ View Results in Table 실행결과
+</center>
+
+<ol start="8">
+<li>해당 Thread Group을 실행한 후 Listener를 통해 결과값을 보았다면 Start 버튼 옆 Clear(or All Clear) 버튼을 클릭하여 테스트했던 내용을 모두 삭제합니다.</li>
+</ol>
+<blockquote>
+<p><em><strong>테스트 결과값 삭제 시</strong></em>, 테스트에 대한 내용은 저장할 수 있지만 해당 테스트에 대한 결과값은 따로 저장되지 않으므로 필요한 내용이라면 반드시 <strong>스크린샷을 활용하는 것</strong>을 추천드립니다.</p>
+</blockquote>
+<center>
+<img src="../image/jmeter28.png" width="600">
+▲ Clear 버튼 위치
+</center>
+
+<ul>
+<li>Clear 선택 : 해당 Thread Group만 적용되어 테스트 진행한 단일 Thread Group Result만을 삭제</li>
+<li>Clear All 선택 : 전체 Thread Group에 적용되어 테스트한 모든 Thread Group Results 삭제</li>
+</ul>
+<hr>
+<h4 id="3-3-2-JDBC-Request-Test-Database-load-Test"><a href="#3-3-2-JDBC-Request-Test-Database-load-Test" class="headerlink" title="3-3-2. JDBC Request Test(Database load Test)"></a>3-3-2. JDBC Request Test(Database load Test)</h4><ol>
+<li>Thread Group 생성하기 <em>(3-3-1. HTTP Request와 동일)</em><br>왼쪽 상단 Test Plan 우클릭 후, Add &gt; Threads(Users) &gt; Thread Group을 클릭하여 생성합니다.</li>
+<li>Thread Properties 설정하기 <em>(3-3-1. HTTP Request와 동일)</em><br>Thread Group 을 클릭하여 오른쪽에 있는 Thread Properties를 설정합니다.</li>
+<li>JDBC Connection Configuration 추가 및 설정하기</li>
+</ol>
+<ul>
+<li>JDBC 테스트 진행을 위해서는 Thread Group 내에 JDBC Connection 설정 추가 및 설정 값을 지정합니다.</li>
+<li>Thread Group &gt; Add &gt; Config Element &gt; JDBC Connection Configuration 클릭하여 추가</li>
+</ul>
+<center>
+<img src="../image/jmeter29.png" width="600">
+▲ JDBC Connection Configuration 추가하기
+</center>
+
+<p>JDBC Connection Configuration 의 설정 화면을 보게 되면 Variable Name Bound to Pool, Connection Validation by Pool, Database Connection Configuration으로 각각 설정 가능합니다.</p>
+<p>설정해야하는 부분이 있으시면 해당 부분을 설정하시면 됩니다.</p>
+<center>
+<img src="../image/jmeter30.png" width="600">
+▲ JDBC Connection Configuration 설정 화면
+</center>
+
+<p>JDBC Connection Configuration 설정이 모두 중요하긴 하지만 가장 중요한 부분은 JDBC Connection Configuration 가장 하단에 있는 <em>Database Connection Configuration</em>부분입니다.<br>해당 부분의 설정값 (Database URL, JDBC Driver Class, Username, Password)를 입력해주시면 해당 Database URL로 접근 권한을 가지고 있는 Username으로 설정하신 Database를 접근할 수 있습니다.</p>
+<center>
+<img src="../image/jmeter31.png" width="320">
+▲ Database Connection Configuration 작성 부분
+</center>
+
+<blockquote>
+<ul>
+<li>Database URL: 데이터베이스에 대한 JDBC 연결 문자열 <em>(jdbc:sqlserver://;;DatabaseName=;)</em></li>
+<li>JDBC Driver Class : 드라이버 클래스 <em>(com.microsoft.sqlserver.jdbc.SQLServerDriver)</em></li>
+<li>Username : 데이터베이스에 연결할 사용자 이름</li>
+<li>Password : 데이터베이스에 접속하기 위한 비밀번호</li>
+</ul>
+</blockquote>
+<ol start="4">
+<li>실질적인 측정을 위하여 JDBC Request Sampler 추가하여 진행합니다.<br>JDBC Request Sampler를 사용하면 구성된 JDBC Connection에 따라 Database에 JDBC 요청(SQL 쿼리)을 보낼 수 있습니다.<br>① Thread Group 우클릭 &gt; Add &gt; Sampler &gt; JDBC Request 선택해 JDBC Request를 생성합니다.<br>(<em>Sampler가 있어야 테스트 가능합니다.</em>)</li>
+</ol>
+<center>
+<img src="../image/jmeter32.png" width="600">
+▲ JDBC Request 생성
+</center>
+
+<center>
+<img src="../image/jmeter33.png" width="600">
+▲ JDBC Request Sampler 추가 모습
+</center>
+
+<p>② JDBC Request 내용 작성하기</p>
+<center><img src="../image/jmeter34.png" width="600"></center>
+
+<p>SQL 쿼리 중 하나로 실제 SQL 쿼리를 작성할 수 있습니다. SQL Query Type은 하단의 정보를 참고하시면 됩니다.</p>
+<blockquote>
+<ul>
+<li> Select Statement</li>
+<li> Update Statement – use this for Inserts and Deletes as well</li>
+<li> Callable Statement</li>
+<li> Prepared Select Statement</li>
+<li> Prepared Update Statement – use this for Inserts and Deletes as well</li>
+<li> Commit</li>
+<li> Rollback</li>
+<li> Autocommit (false)</li>
+<li> Autocommit (true)</li>
+</ul>
+</blockquote>
+<p><em>SQL Query 예제</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select  *  from  where id=  </span><br><span class="line">insert  into  (column1,column2,...)  VALUES  (value1,value2,...)  </span><br><span class="line">update  set column1=value</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Parameter Values : 쉼표로 구분된 Parameter values list</li>
+<li>Parameter types : 쉼표로 구분된 SQL Parameter type list</li>
+</ul>
+<p><em>(예시: INTEGER, DATE, VARCHAR, DOUBLE)</em></p>
+<ul>
+<li>Variable names : 준비된 Select 문에서 반환된 값으로 쉼표로 구분된 Variable name list입니다.</li>
+<li>Result variable names : 작성하시면 행의 맵 목록이 포함된 Variable name이 생성됩니다.</li>
+</ul>
+<ol start="5">
+<li><p>HTTP Request Sampler에서 진행한 <em><strong>‘5)Listener 추가하기’</strong></em> 와 동일하게 추가합니다.</p>
+</li>
+<li><p><em>‘5)Listener 추가하기’</em> 까지 모두 완료하시면 하단의 사진과 같이 Thread Group 내 Database Load Test를 위한 트리 구조가 완성됩니다.</p>
+</li>
+</ol>
+<center>
+<img src="../image/jmeter35.png" width="600">
+▲ 완성된 Database Load Test 트리 구조
+</center>
+
+<ol start="7">
+<li><p>완성된 JDBC Request를 HTTP Request와 동일한 방식으로 Run 시킨 후, 결과값을 확인합니다.</p>
+</li>
+<li><p>결과 화면은 <em>‘3-3-1. HTTP Request Sampler 7)’</em> 의 형태를 보실 수 있기에 해당 내용을 참고하시면 됩니다.</p>
+</li>
+</ol>
+<hr>
+<h2 id="후기"><a href="#후기" class="headerlink" title="후기"></a>후기</h2><p>지금까지 Web과 Database 성능 테스트에 활용한 Apache JMeter 정의, 우리 VNTG Dataforge팀에서의 툴 검토 과정, 마지막으로 테스트 진행 방법까지 알아보았습니다.</p>
+<p>직접 테스트 하는 과정에서 Apache JMeter의 단점 하나를 뽑아본다면 수많은 API 성능 테스트 중 상용 툴을 포함해서 기능적인 측면에서는 자동으로 샘플링을 처리하는 기능보다는 샘플러 개당 수동으로 샘플링 처리해주어야 하는 점이 가장 큰 아쉬움이 있었습니다.</p>
+<p>그런데도 HTTP, HTTPS, JDBC, Shell Scripts 등 다양한 프로토콜이 지원 가능하다는 점, 멀티 스레드를 지원하고, 캐싱 및 오프라인 분석을 지원한 점, 멀티 스레드로부터 병렬 샘플링이 가능하고, 분리된 스레드로부터 다른 기능을 동시에 실행 가능하다는 점 등 성능 측정에 많은 부분들을 세세하게 조절해가며 활용할 수 있다는 점에서 활용도를 높일 수 있었습니다.👍</p>
+<p>JMeter는 웹 기반 애플리케이션의 성능 테스트뿐 아니라 다양한 프로토콜 기반의 부하를 발생시키고 이에 관한 결과를 Summary, Graph Results 등 그래프 형태로 표현해주는 기능을 제공해줍니다. 비록 상용 성능 테스트 도구에 비해서 부하 모델 설정이나 실시간 변경 등의 기능이 부족하지만, 테스트를 검증하고 이해하는데 충분히 적합한 도구입니다. 또한, 버전이 올라갈수록 기능이 계속 발전하고 있어 추후 웹 기반의 성능 테스트 툴로써 충분히 활용해볼 만한 좋은 도구라고 생각합니다.</p>
+<p>지금까지 Apache JMeter로 웹 성능 테스트를 진행해 본 후기였습니다. 긴 글 읽어주셔서 감사합니다!</p>
+<p>VNTG Dataforge팀의 Data Engineer 전준현이었습니다.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://vntgcorp.github.io/apacheJmeter/" data-id="cl0c1o1ne0000skuw1mf69xfp" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "VNTG"
+        },
+        "headline": "SW 성능 테스트 툴 Apache JMeter™ 활용",
+        "image": "https://VntgCorp.github.io../../../image/jmeter_logo.svg",
+        "keywords": "",
+        "genre": "Test",
+        "datePublished": "2022-03-04",
+        "dateCreated": "2022-03-04",
+        "dateModified": "2022-03-04",
+        "url": "https://VntgCorp.github.io/apacheJmeter/",
+        "description": "
+1. Apache JMeter 란 무엇인가
+2. Apache JMeter 기본 개념
+3. Apache JMeter 사용법
+후기
+
+안녕하세요, VNTG Dataforge팀의 Data Engineer 전준현입니다😀
+소프트웨어 개발 초창기에는 소프트웨어 개발에 필요한 기술을 습득하고 요구사항을 분석하고 이를 설계하고 구현하는 과정으로도 바쁠 뿐만 아니라 개발",
+        "wordCount": 3050
+    }
+</script>
+
+</article>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>Contact:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="envelope" href="mailto:techblog@vntgcorp.com" target="_blank" rel="noopener">
+                        <i class="icon fa fa-envelope"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/VntgCorp" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="home" href="https://www.vntgcorp.com/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-home"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="http://blog.vntgcorp.com/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/metabase_visualization/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Metabase를 활용한 통계데이터 시각화</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/apacheJmeter/" class="thumbnail">
+    
+    
+        <span style="background-image:url(../../../image/jmeter_logo.svg)" alt="SW 성능 테스트 툴 Apache JMeter™ 활용" class="thumbnail-image"></span>
+    
+    
+</a>
+
+
+
+  
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Test/">Test</a></p>
+                            <p class="item-title"><a href="/apacheJmeter/" class="title">SW 성능 테스트 툴 Apache JMeter™ 활용</a></p>
+                            <p class="item-date"><time datetime="2022-03-04T06:00:00.000Z" itemprop="datePublished">2022-03-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/metabase_visualization/" class="thumbnail">
+    
+    
+        <span style="background-image:url(../../../image/metabase_logo.png)" alt="Metabase를 활용한 통계데이터 시각화" class="thumbnail-image"></span>
+    
+    
+</a>
+
+
+
+  
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Data/">Data</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Data/Metabase/">Metabase</a></p>
+                            <p class="item-title"><a href="/metabase_visualization/" class="title">Metabase를 활용한 통계데이터 시각화</a></p>
+                            <p class="item-date"><time datetime="2022-01-13T06:00:00.000Z" itemprop="datePublished">2022-01-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/level2process_computer/" class="thumbnail">
+    
+    
+        <span style="background-image:url(../../../image/l2pc.jpg)" alt="Process Computer팀 업무 및 관련 기술 소개" class="thumbnail-image"></span>
+    
+    
+</a>
+
+
+
+  
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Data/">Data</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Data/Level2/">Level2</a></p>
+                            <p class="item-title"><a href="/level2process_computer/" class="title">Process Computer팀 업무 및 관련 기술 소개</a></p>
+                            <p class="item-date"><time datetime="2022-01-10T06:00:00.000Z" itemprop="datePublished">2022-01-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/grafana_df_op/" class="thumbnail">
+    
+    
+        <span style="background-image:url(../../../image/grafana_df_op_00.png)" alt="Grafana를 활용한 데이터 가시화" class="thumbnail-image"></span>
+    
+    
+</a>
+
+
+
+  
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Data/">Data</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Data/Grafana/">Grafana</a></p>
+                            <p class="item-title"><a href="/grafana_df_op/" class="title">Grafana를 활용한 데이터 가시화</a></p>
+                            <p class="item-date"><time datetime="2021-11-30T06:00:00.000Z" itemprop="datePublished">2021-11-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/devops_md_op/" class="thumbnail">
+    
+    
+        <span style="background-image:url(../../../image/devops_md_op_00.png)" alt="Terraform Cloud 기반으로 인프라 구축 협업하기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+
+
+  
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/DevOps/">DevOps</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/DevOps/Terraform/">Terraform</a></p>
+                            <p class="item-title"><a href="/devops_md_op/" class="title">Terraform Cloud 기반으로 인프라 구축 협업하기</a></p>
+                            <p class="item-date"><time datetime="2021-11-29T06:00:00.000Z" itemprop="datePublished">2021-11-29</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ClickUp/">ClickUp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data/">Data</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data/Grafana/">Grafana</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data/Level2/">Level2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data/Metabase/">Metabase</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DevOps/">DevOps</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/DevOps/CICD/">CICD</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DevOps/Terraform/">Terraform</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FastAPI/">FastAPI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Static-Site-Generator/">Static Site Generator</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Static-Site-Generator/Gatsby/">Gatsby</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Static-Site-Generator/Hexo/">Hexo</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Test/">Test</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class=""></a>
+                </h1>
+                <p>&copy; VNTG. Powered by GitHub Pages.</p>                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://vntgcorp.github.io/apacheJmeter/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

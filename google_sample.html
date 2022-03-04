@@ -1,0 +1,25 @@
+<html>
+  <body>
+     구글계정으로 로그인 테스트, 로그인시 encoded JWT 반환<br>
+     <br>
+     decoding은 https://jwt.io/ 에서 확인<br>
+     <br>
+      <script src="https://accounts.google.com/gsi/client" async defer></script>
+      <script>
+        function handleCredentialResponse(response) {
+          console.log("Encoded JWT ID token: " + response.credential);
+        }
+        window.onload = function () {
+          google.accounts.id.initialize({
+            client_id: "647763555197-bp7bf2ok1ggqd14a9l2q1o5lhkdqaa3m.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+          });
+          google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            { theme: "outline", size: "large" }  // customization attributes
+          );
+        }
+    </script>
+    <div id="buttonDiv"></div> 
+  </body>
+</html>
